@@ -3,4 +3,4 @@ build_from:
   aarch64: ghcr.io/home-assistant/aarch64-base:latest
 labels:
   org.opencontainers.image.title: "Immich Face To Album"
-  org.opencontainers.image.description: "HAOS app wrapper for immich-face-to-album"
+  org.opencontainers.image.description: "Sync all photos belonging to one or more detected faces into an existing Immich album (similar to Google Photos “live / auto-updating albums”)."
