@@ -138,6 +138,9 @@ jobs:
       - "kid-1-id"
       - "kid-2-id"
     require_all_faces: false
+    no_other_faces: false
+    remove_non_matching: false
+    timebucket: MONTH
   - immich_url: "https://immich-2.example.com"
     api_key: "key-for-account-2"
     album_id: "us-album-id"
