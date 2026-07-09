@@ -1,5 +1,5 @@
-<div align="center">
-<a href="https://github.com/ajb3932/immich-partner-sharing"><img src="https://raw.githubusercontent.com/ajb3932/immich-partner-sharing/refs/heads/main/partnersharing.png" title="Logo" style="max-width:100%;" width="128" alt='App Logo' /></a>
-</div>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/sjauijn/immich-face-to-album-HAOS/main/immich_face_to_album/icon.png" alt="icon">
+</p>
 
 # Immich Face To Album
