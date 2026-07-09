@@ -152,3 +152,8 @@ jobs:
     remove_non_matching: false
     timebucket: MONTH
 ```
+
+## Big thanks to:
+[@romainrbr](https://github.com/romainrbr/immich-face-to-album) for awesome work
+
+[@ajb3932](https://github.com/ajb3932/immich-partner-sharing) for nice logo
