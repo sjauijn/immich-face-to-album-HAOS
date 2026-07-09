@@ -75,7 +75,7 @@ A job with a missing `immich_url`, `api_key`, `album_id`, or `faces` is skipped 
 
 **Everyone in one album (OR):** include photos of either of two people.
 ```yaml
-run_every_seconds: 0
+run_every_seconds: 600
 verbose: false
 jobs:
   - immich_url: "https://immich.example.com"
@@ -92,7 +92,7 @@ jobs:
 
 **Photos of you together (AND):** only include assets where both people appear.
 ```yaml
-run_every_seconds: 0
+run_every_seconds: 600
 verbose: false
 jobs:
   - immich_url: "https://immich.example.com"
@@ -109,7 +109,7 @@ jobs:
 
 **Exclude a person:** gather two faces, but drop any asset that also contains a third.
 ```yaml
-run_every_seconds: 0
+run_every_seconds: 600
 verbose: false
 jobs:
   - immich_url: "https://immich.example.com"
@@ -128,7 +128,7 @@ jobs:
 
 **Two albums, two accounts, one add-on:**
 ```yaml
-run_every_seconds: 0
+run_every_seconds: 600
 verbose: false
 jobs:
   - immich_url: "https://immich.example.com"
