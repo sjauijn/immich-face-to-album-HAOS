@@ -1,12 +1,12 @@
 configuration:
   run_every_seconds:
-    name: Интервал синхронизации (секунды) (Sync interval (seconds))
+    name: Интервал синхронизации (секунды)
     description: Как часто повторно запускать все задачи. 0 — выполнить один раз и завершить.
   verbose:
-    name: Подробное логирование (Verbose logging)
+    name: Подробное логирование
     description: Вести детальный журнал вызовов API для каждой задачи.
   jobs:
-    name: Задачи синхронизации (Sync jobs)
+    name: Задачи синхронизации
     description: Одна запись на пару аккаунт/альбом Immich для синхронизации.
     fields:
       immich_url:
@@ -17,7 +17,7 @@ configuration:
         description: API-ключ, созданный в этом конкретном аккаунте Immich.
       album_id:
         name: ID целевого альбома (Target album ID)
-        description: ID существующего альбома (последний сегмент его URL - 7ah18sce-8q15-4291-xg12-j01e4061o96t , например http://homeassistant.local:8080/albums/7ah18sce-8q15-4291-xg12-j01e4061o96t ).
+        description: ID существующего альбома (последний сегмент его URL , например http://homeassistant.local:8080/albums/7ah18sce-8q15-4291-xg12-j01e4061o96t ).
       faces:
         name: ID лиц для включения (Face IDs to include)
         description: ID людей, распознанных в этом аккаунте. Если включено «Требовать все лица», несколько записей объединяются по условию "AND" , иначе — по условию "OR".
