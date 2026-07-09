@@ -32,7 +32,7 @@ Sync all photos belonging to one or more detected faces into an existing Immich 
 
 - Person (face) ID: open a person in the Immich “People / Faces” section; the last path segment in the URL is the ID.
 - Album ID: open the target album; the last path segment is the ID.
-- Server URL: include scheme and port (e.g. `http://homeassistant.local:[PORT]` or `https://photos.example.com`).
+- Server URL: include scheme and port (e.g. `http://homeassistant.local:8080` or `https://photos.example.com`).
 - API Key: generate in Immich settings.
 
 The album must already exist (the tool only adds assets; it does not create albums).
