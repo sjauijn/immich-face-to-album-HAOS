@@ -1,48 +1,12 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/sjauijn/immich-face-to-album-HAOS/main/icon.png" alt="icon">
-</p>
-
 # Immich Face To Album
 
+HAOS wrapper for [immich-face-to-album](https://github.com/romainrbr/immich-face-to-album).
 
-I maintain this app, along with my other Home Assistant apps, solely for my own use. As long as I'm actively using them myself, I'll continue developing and updating them; otherwise, support for apps I no longer need will be discontinued.
+Add-only by default: assets are added to the target album, never removed,
+unless "Remove non-matching" is enabled for a job. The target album must
+already exist on each account and, for multi-account jobs, be shared with
+that account with the Editor role.
 
-## About
-
-Sync all photos belonging to one or more detected faces into an existing Immich album (similar to Google Photos “live / auto-updating albums”).
-
-## Installation
-
-1. Click to add the stable repository:
-   [![Add Stable Repository](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https://github.com/sjauijn/immich-face-to-album-HAOS) 
-
-2. Or manually add:
-
-   ```text
-   https://github.com/sjauijn/immich-face-to-album-HAOS
-   ```
-
----
-
-## Quick Start
-
----
-
-## Getting the IDs
-
-- Person (face) ID: open a person in the Immich “People / Faces” section; the last path segment in the URL is the ID.
-- Album ID: open the target album; the last path segment is the ID.
-- Server URL: include scheme and port (e.g. `http://homeassistant.local:[PORT]` or `https://photos.example.com`).
-- API Key: generate in Immich settings.
-
-The album must already exist (the tool only adds assets; it does not create albums).
-
----
-
-## Examples
-
----
-
-## Verbose Mode
-
----
+Each entry in `jobs` runs independently with its own server URL, API key and
+face IDs (person IDs are per-account in Immich, so the same real person will
+have a different ID on each account).
