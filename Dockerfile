@@ -1,4 +1,5 @@
-FROM ghcr.io/home-assistant/base:latest
+ARG BUILD_FROM
+FROM ${BUILD_FROM}
 
 RUN apk add --no-cache python3 py3-pip jq
 
@@ -12,11 +13,9 @@ ENV PYTHONPATH="/opt/immich_face_to_album"
 COPY run.sh /
 RUN chmod a+x /run.sh
 
-ARG BUILD_VERSION
-ARG BUILD_ARCH
 LABEL \
-  io.hass.version="${BUILD_VERSION}" \
+  io.hass.version="1.0.0" \
   io.hass.type="addon" \
-  io.hass.arch="${BUILD_ARCH}"
+  io.hass.arch="armhf|aarch64|amd64|armv7|i386"
 
 CMD [ "/run.sh" ]
