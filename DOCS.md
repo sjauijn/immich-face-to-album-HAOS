@@ -4,17 +4,9 @@
 
 # Immich Face To Album
 
-
 I maintain this app, along with my other Home Assistant apps, solely for my own use. As long as I'm actively using them myself, I'll continue developing and updating them; otherwise, support for apps I no longer need will be discontinued.
 
-
-## About
-
-Sync all photos belonging to one or more detected faces into an existing Immich album (similar to Google Photos “live / auto-updating albums”).
-
-
 ## Quick Start
-
 
 ## Getting the IDs
 
@@ -25,11 +17,7 @@ Sync all photos belonging to one or more detected faces into an existing Immich 
 
 The album must already exist (the tool only adds assets; it does not create albums).
 
-
-
 ## Examples
-
-
 
 ## Verbose Mode
 
