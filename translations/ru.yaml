@@ -1,0 +1,38 @@
+configuration:
+  run_every_seconds:
+    name: Интервал синхронизации (секунды) (Sync interval (seconds))
+    description: Как часто повторно запускать все задачи. 0 — выполнить один раз и завершить.
+  verbose:
+    name: Подробное логирование (Verbose logging)
+    description: Вести детальный журнал вызовов API для каждой задачи.
+  jobs:
+    name: Задачи синхронизации (Sync jobs)
+    description: Одна запись на пару аккаунт/альбом Immich для синхронизации.
+    fields:
+      immich_url:
+        name: URL сервера Immich (Immich server URL)
+        description: Учитывайте адрес и порт, например http://homeassistant.local:8080 или https://immich.example.com
+      api_key:
+        name: API-ключ (API Key)
+        description: API-ключ, созданный в этом конкретном аккаунте Immich.
+      album_id:
+        name: ID целевого альбома (Target album ID)
+        description: ID существующего альбома (последний сегмент его URL - 7ah18sce-8q15-4291-xg12-j01e4061o96t , например http://homeassistant.local:8080/albums/7ah18sce-8q15-4291-xg12-j01e4061o96t ).
+      faces:
+        name: ID лиц для включения (Face IDs to include)
+        description: ID людей, распознанных в этом аккаунте. Если включено «Требовать все лица», несколько записей объединяются по условию "AND" , иначе — по условию "OR".
+      skip_faces:
+        name: ID лиц для исключения (Face IDs to exclude)
+        description: Медиафайлы, содержащие любого из указанных людей, исключаются.
+      require_all_faces:
+        name: Требовать все лица (Require all faces)
+        description: Добавлять в альбом только медиафайлы, содержащие сразу всех людей, указанных в «ID лиц для включения». Отключите для условия "OR".
+      no_other_faces:
+        name: Без других лиц (No other faces)
+        description: Отклонять медиафайлы, содержащие любые распознанные лица за пределами включённого набора в «ID лиц для включения».
+      remove_non_matching:
+        name: Удалять неподходящие (Remove non-matching)
+        description: ОПАСНЫЙ ПАРАМЕТР! Удалять из альбома материалы, которые не соответствуют указанным выше условиям.
+      timebucket:
+        name: Размер временного сегмента (Timeline bucket size)
+        description: Внутренний размер страницы при запросах к Immich. По умолчанию - MONTH.
