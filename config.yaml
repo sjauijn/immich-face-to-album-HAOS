@@ -10,8 +10,7 @@ boot: auto
 arch:
   - amd64
   - aarch64
-map:
-  - addon_config:rw
+map: []
 options:
   run_every_seconds: 600
   verbose: false
