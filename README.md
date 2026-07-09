@@ -152,7 +152,3 @@ jobs:
     remove_non_matching: false
     timebucket: MONTH
 ```
-
-## Verbose Mode
-
-Enable `verbose` in the add-on Configuration to log, per job: which time buckets and assets were fetched from Immich, why individual assets were included or rejected (especially useful with `no_other_faces`), and which assets were added or removed. It applies to every job on every pass, so expect a lot of log output — turn it off again once you've confirmed the configuration behaves as expected.
