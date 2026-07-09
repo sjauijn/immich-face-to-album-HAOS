@@ -2,6 +2,29 @@
 
 OPTIONS_FILE="/data/options.json"
 
+# --- Migration: ensure every job has no_other_faces / remove_non_matching ---
+# Older saved configs (created before these options existed, or produced by
+# manually editing options.json via the "Text editor" UI) may be missing
+# these keys entirely. The Supervisor's schema validator treats them as
+# required booleans, so a job without them causes "Missing option ..." on
+# save. Backfill them with their documented default (false) in-place before
+# anything else reads the options file.
+if [ -f "${OPTIONS_FILE}" ]; then
+  TMP_OPTIONS_FILE="$(mktemp)"
+  if jq '
+    .jobs = ((.jobs // []) | map(
+      .no_other_faces = (.no_other_faces // false)
+      | .remove_non_matching = (.remove_non_matching // false)
+    ))
+  ' "${OPTIONS_FILE}" > "${TMP_OPTIONS_FILE}" 2>/dev/null; then
+    if ! cmp -s "${OPTIONS_FILE}" "${TMP_OPTIONS_FILE}"; then
+      bashio::log.info "Migrating options.json: backfilling missing no_other_faces/remove_non_matching defaults"
+      cp "${TMP_OPTIONS_FILE}" "${OPTIONS_FILE}"
+    fi
+  fi
+  rm -f "${TMP_OPTIONS_FILE}"
+fi
+
 RUN_EVERY_SECONDS="$(bashio::config 'run_every_seconds')"
 VERBOSE="$(bashio::config 'verbose')"
 JOB_COUNT="$(jq '.jobs | length' "${OPTIONS_FILE}")"
