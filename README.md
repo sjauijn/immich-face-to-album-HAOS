@@ -22,11 +22,11 @@ Sync all photos belonging to one or more detected faces into an existing Immich 
    https://github.com/sjauijn/immich-face-to-album-HAOS
    ```
 
----
+
 
 ## Quick Start
 
----
+
 
 ## Getting the IDs
 
@@ -37,12 +37,12 @@ Sync all photos belonging to one or more detected faces into an existing Immich 
 
 The album must already exist (the tool only adds assets; it does not create albums).
 
----
+
 
 ## Examples
 
----
+
 
 ## Verbose Mode
 
----
+
