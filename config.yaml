@@ -1,0 +1,43 @@
+name: "Immich Face To Album"
+description: "Syncs assets matching one or more recognized faces into an existing Immich album. Supports multiple independent sync jobs (e.g. one per Immich user account)."
+version: "1.0.0"
+slug: "immich_face_to_album"
+url: "https://github.com/romainrbr/immich-face-to-album"
+init: false
+apparmor: true
+startup: application
+boot: auto
+arch:
+  - amd64
+  - aarch64
+map:
+  - addon_config:rw
+options:
+  run_every_seconds: 600
+  verbose: false
+  jobs:
+    - immich_url: ""
+      api_key: ""
+      album_id: ""
+      faces:
+        - ""
+      skip_faces: []
+      require_all_faces: true
+      no_other_faces: false
+      remove_non_matching: false
+      timebucket: "MONTH"
+schema:
+  run_every_seconds: "int(0,)"
+  verbose: "bool"
+  jobs:
+    - immich_url: "url"
+      api_key: "password"
+      album_id: "str"
+      faces:
+        - "str"
+      skip_faces:
+        - "str?"
+      require_all_faces: "bool"
+      no_other_faces: "bool"
+      remove_non_matching: "bool"
+      timebucket: "list(MONTH|WEEK|DAY)"

@@ -1,0 +1,38 @@
+configuration:
+  run_every_seconds:
+    name: Sync interval (seconds)
+    description: How often to re-run all jobs. 0 runs once and exits.
+  verbose:
+    name: Verbose logging
+    description: Print detailed API calls for every job.
+  jobs:
+    name: Sync jobs
+    description: One entry per Immich account/album pair to keep in sync.
+    fields:
+      immich_url:
+        name: Immich server URL
+        description: Include scheme and port, e.g. https://immich.example.com
+      api_key:
+        name: API key
+        description: API key generated on this specific Immich account.
+      album_id:
+        name: Target album ID
+        description: ID of the existing album (last segment of its URL). The album must already exist.
+      faces:
+        name: Face IDs to include
+        description: Person IDs as recognized on this account. Multiple entries are matched with AND when Require all faces is enabled, otherwise OR.
+      skip_faces:
+        name: Face IDs to exclude
+        description: Assets containing any of these people are excluded.
+      require_all_faces:
+        name: Require all faces
+        description: Only add assets containing every ID listed in Face IDs to include (AND). Disable for any-of (OR).
+      no_other_faces:
+        name: No other faces
+        description: Reject assets that contain any recognized face outside the included set.
+      remove_non_matching:
+        name: Remove non-matching
+        description: Also remove assets already in the album that no longer satisfy the criteria above. Leave disabled to only ever add.
+      timebucket:
+        name: Timeline bucket size
+        description: Internal paging granularity used when querying Immich.
