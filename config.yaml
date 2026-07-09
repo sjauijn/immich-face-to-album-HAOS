@@ -1,6 +1,6 @@
 name: "Immich Face To Album"
 description: "Syncs assets matching one or more recognized faces into an existing Immich album. Supports multiple independent sync jobs (e.g. one per Immich user account)."
-version: "1.0.15"
+version: "1.0.14"
 slug: "immich_face_to_album"
 url: "https://github.com/sjauijn/immich-face-to-album-HAOS/"
 init: false
