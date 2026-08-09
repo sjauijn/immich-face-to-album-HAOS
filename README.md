@@ -8,7 +8,7 @@ I maintain this app, along with my other Home Assistant apps, solely for my own 
 
 ## About
 
-Sync all photos belonging to one or more detected faces into an existing Immich album (similar to Google Photos “live / auto-updating albums”).
+Sync all photos belonging to one or more detected faces into an existing Immich album (similar to Google Photos "live / auto-updating albums"). Uses Immich's search/metadata API with `personIds` for efficient, single-pass retrieval. Supports incremental sync on repeated runs: after the first scan, only newly uploaded assets are fetched.
 
 ## Installation
 
