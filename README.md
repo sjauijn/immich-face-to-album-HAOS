@@ -35,7 +35,7 @@ By default the add-on runs once, adds matching assets, then repeats every `run_e
 
 ## Getting the IDs
 
-- Person (face) ID: open a person in the Immich “People / Faces” section; the last path segment in the URL is the ID.
+- Person (face) ID: open a person in the Immich "People / Faces" section; the last path segment in the URL is the ID.
 - Album ID: open the target album; the last path segment is the ID.
 - Server URL: include scheme and port (e.g. `http://homeassistant.local:8080` or `https://photos.example.com`).
 - API Key: generate in Immich settings.
