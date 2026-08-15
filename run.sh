@@ -1,6 +1,7 @@
 #!/usr/bin/with-contenv bashio
 
 OPTIONS_FILE="/data/options.json"
+STATE_FILE="/data/state.json"
 
 RUN_EVERY_SECONDS="$(bashio::config 'run_every_seconds')"
 VERBOSE="$(bashio::config 'verbose')"
@@ -16,14 +17,13 @@ run_job() {
   local job
   job="$(jq -c ".jobs[${idx}]" "${OPTIONS_FILE}")"
 
-  local immich_url api_key album_id require_all_faces no_other_faces remove_non_matching timebucket
+  local immich_url api_key album_id require_all_faces no_other_faces remove_non_matching
   immich_url="$(echo "${job}" | jq -r '.immich_url')"
   api_key="$(echo "${job}" | jq -r '.api_key')"
   album_id="$(echo "${job}" | jq -r '.album_id')"
   require_all_faces="$(echo "${job}" | jq -r '.require_all_faces')"
   no_other_faces="$(echo "${job}" | jq -r '.no_other_faces')"
   remove_non_matching="$(echo "${job}" | jq -r '.remove_non_matching')"
-  timebucket="$(echo "${job}" | jq -r '.timebucket // "MONTH"')"
 
   if [ -z "${immich_url}" ] || [ "${immich_url}" = "null" ] || \
      [ -z "${api_key}" ] || [ "${api_key}" = "null" ] || \
@@ -72,7 +72,7 @@ run_job() {
     "${face_args[@]}" \
     "${skip_args[@]}" \
     --album "${album_id}" \
-    --timebucket "${timebucket}" \
+    --state-file "${STATE_FILE}" \
     "${bool_args[@]}" \
     ${VERBOSE_FLAG}
 }

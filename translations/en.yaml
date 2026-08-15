@@ -32,7 +32,4 @@ configuration:
         description: Reject assets that contain any recognized face outside the included set.
       remove_non_matching:
         name: Remove non-matching
-        description: Also remove assets already in the album that no longer satisfy the criteria above. Leave disabled to only ever add.
-      timebucket:
-        name: Timeline bucket size
-        description: Internal paging granularity used when querying Immich.
+        description: Also remove assets already in the album that no longer satisfy the criteria above. Leave disabled to only ever add. Forces a full re-scan on every run for this job.

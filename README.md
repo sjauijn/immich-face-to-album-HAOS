@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/sjauijn/immich-face-to-album-HAOS/main/icon.png" alt="icon">
 </p>
 
-# Immich Face To Album — Home Assistant app
+# Immich Face To Album - Home Assistant app
 
 I maintain this app, along with my other Home Assistant apps, solely for my own use. As long as I'm actively using them myself, I'll continue developing and updating them; otherwise, support for apps I no longer need will be discontinued.
 
@@ -62,14 +62,24 @@ Each entry under `jobs` syncs one album from one Immich account:
 | `skip_faces` | No | *(empty)* | Person IDs to exclude. Assets containing any of these people are always excluded, regardless of other options. |
 | `require_all_faces` | No | `true` | When enabled, only assets containing **every** ID in `faces` are added (AND). When disabled, assets containing **any** ID in `faces` are added (OR). |
 | `no_other_faces` | No | `false` | Reject assets that contain any recognized person outside the `faces` set — even if they'd otherwise match. |
-| `remove_non_matching` | No | `false` | ⚠️ Also **removes** assets already in the album that no longer satisfy the criteria above. Leave disabled if the add-on should only ever add assets, never remove them. |
-| `timebucket` | No | `MONTH` | Internal paging granularity used when querying Immich (`MONTH`, `WEEK`, or `DAY`). Rarely needs changing. |
+| `remove_non_matching` | No | `false` | ⚠️ Also **removes** assets already in the album that no longer satisfy the criteria above. Leave disabled if the add-on should only ever add assets, never remove them. Forces a full re-scan on every run for this job. |
 
 A job with a missing `immich_url`, `api_key`, `album_id`, or `faces` is skipped (with a warning in the log) rather than stopping the other jobs.
 
 ### Multiple jobs
 
 `jobs` is a list, so a single add-on instance can keep several albums in sync at once — even across different Immich servers or accounts. Click **Add** under **Sync jobs** in the Configuration tab to add another entry. Every job in the list runs, in order, on each pass; `run_every_seconds` and `verbose` apply to all of them together.
+
+### Incremental sync
+
+After a job's first successful run, the add-on only asks Immich for assets created since that job's last run — instead of re-fetching everyone's entire photo history on every pass. This is tracked in `/data/state.json`, keyed by `album_id`, so it's safe to keep multiple jobs (even against different Immich servers) in the same add-on.
+
+The add-on automatically falls back to a full re-scan for a job when:
+- it's that job's first run, or `/data/state.json` was deleted;
+- you change `faces`, `skip_faces`, `require_all_faces`, or `no_other_faces` for that job;
+- `remove_non_matching` is enabled for that job (a full comparison against the album is required to know what to remove).
+
+You don't need to configure anything for this — it's automatic. If you ever want to force a one-off full re-scan of a job (e.g. after Immich re-detected some faces), the simplest option is to temporarily change any of that job's `faces`/`skip_faces`/`require_all_faces`/`no_other_faces` values (even a no-op toggle) and save — a config change forces a full re-scan for that job. Alternatively, install the official **Terminal & SSH** add-on, open a shell in this add-on's container (e.g. `docker exec -it addon_<slug> sh`), and delete `/data/state.json` there — it isn't reachable from the File editor/Samba share, which only expose `/config` and `/share`, not an add-on's private `/data`.
 
 ## Examples
 
@@ -87,7 +97,6 @@ jobs:
     require_all_faces: false
     no_other_faces: false
     remove_non_matching: false
-    timebucket: MONTH
 ```
 
 **Photos of you together (AND):** only include assets where both people appear.
@@ -104,7 +113,6 @@ jobs:
     require_all_faces: true
     no_other_faces: false
     remove_non_matching: false
-    timebucket: MONTH
 ```
 
 **Exclude a person:** gather two faces, but drop any asset that also contains a third.
@@ -123,7 +131,6 @@ jobs:
     require_all_faces: false
     no_other_faces: false
     remove_non_matching: false
-    timebucket: MONTH
 ```
 
 **Two albums, two accounts, one add-on:**
@@ -140,7 +147,6 @@ jobs:
     require_all_faces: false
     no_other_faces: false
     remove_non_matching: false
-    timebucket: MONTH
   - immich_url: "https://immich-2.example.com"
     api_key: "key-for-account-2"
     album_id: "us-album-id"
@@ -150,7 +156,6 @@ jobs:
     require_all_faces: true
     no_other_faces: false
     remove_non_matching: false
-    timebucket: MONTH
 ```
 
 ## Big thanks to:

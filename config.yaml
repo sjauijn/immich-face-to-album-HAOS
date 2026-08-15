@@ -1,6 +1,6 @@
 name: "Immich Face To Album"
 description: "Syncs assets matching one or more recognized faces into an existing Immich album"
-version: "1.0.14"
+version: "1.0.16"
 slug: "immich_face_to_album"
 url: "https://github.com/sjauijn/immich-face-to-album-HAOS/"
 init: false
@@ -24,7 +24,6 @@ options:
       require_all_faces: true
       no_other_faces: false
       remove_non_matching: false
-      timebucket: "MONTH"
 schema:
   run_every_seconds: "int(0,)"
   verbose: "bool"
@@ -39,4 +38,3 @@ schema:
       require_all_faces: "bool"
       no_other_faces: "bool"
       remove_non_matching: "bool"
-      timebucket: "list(MONTH|WEEK|DAY)"
