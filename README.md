@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/sjauijn/immich-face-to-album-HAOS/main/icon.png" alt="icon">
 </p>
 
-# Immich Face To Album - Home Assistant app
+# Immich Face To Album — Home Assistant app
 
 I maintain this app, along my other apps and custom integrations for the Home Assistant, solely for my own use. As long as I'm actively using them myself, I'll continue developing and updating them; otherwise, support for apps and(or) custom integrations I no longer need will be discontinued.
 
