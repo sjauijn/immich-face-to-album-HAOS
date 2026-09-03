@@ -1,0 +1,47 @@
+configuration:
+  run_every_seconds:
+    name: Sync interval (seconds)
+    description: How often to re-run all jobs. 0 runs once and exits.
+  verbose:
+    name: Verbose logging
+    description: Print detailed API calls for every job.
+  jobs:
+    name: Sync jobs
+    description: One entry per Immich account/album pair to keep in sync.
+    fields:
+      immich_url:
+        name: Immich server URL
+        description: Include scheme and port, e.g. http://immich.local:8080 or https://immich.example.com
+      api_key:
+        name: API key
+        description: API key generated on this specific Immich account.
+      album_id:
+        name: Target album ID
+        description: ID of the existing album (last segment of its URL, e.g. http://immich.local/albums/7ah18sce-8q15-4291-xg12-j01e4061o96t ).
+      faces:
+        name: Face IDs to include
+        description: Person IDs as recognized on this account. Multiple entries are matched with "AND" when Require all faces is enabled, otherwise "OR".
+      skip_faces:
+        name: Face IDs to exclude
+        description: Assets containing any of these people are excluded.
+      require_all_faces:
+        name: Require all faces
+        description: Only add assets containing every ID listed in Face IDs to include (AND). Disable for any-of (OR).
+      no_other_faces:
+        name: No other faces
+        description: Reject assets that contain any recognized face outside the included set.
+      remove_non_matching:
+        name: Remove non-matching
+        description: Also remove assets already in the album that no longer satisfy the criteria above. Leave disabled to only ever add. Forces a full re-scan on every run for this job.
+      asset_type_image:
+        name: Include images
+        description: Sync image assets. If all four type toggles are off, all types are synced.
+      asset_type_video:
+        name: Include videos
+        description: Sync video assets. If all four type toggles are off, all types are synced.
+      asset_type_audio:
+        name: Include audio
+        description: Sync audio assets. If all four type toggles are off, all types are synced.
+      asset_type_other:
+        name: Include other
+        description: Sync assets that are neither image, video, nor audio (rare — usually files Immich could not classify). If all four type toggles are off, all types are synced.

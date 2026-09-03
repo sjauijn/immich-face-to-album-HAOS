@@ -1,0 +1,48 @@
+name: "Immich Face To Album"
+description: "Syncs assets matching one or more recognized faces into an existing Immich album"
+version: "1.0.17"
+slug: "immich_face_to_album"
+url: "https://github.com/sjauijn/immich-face-to-album-HAOS/"
+init: false
+apparmor: true
+startup: application
+boot: auto
+arch:
+  - amd64
+  - aarch64
+map: []
+options:
+  run_every_seconds: 600
+  verbose: false
+  jobs:
+    - immich_url: ""
+      api_key: ""
+      album_id: ""
+      faces:
+        - ""
+      skip_faces: []
+      require_all_faces: true
+      no_other_faces: false
+      remove_non_matching: false
+      asset_type_image: false
+      asset_type_video: false
+      asset_type_audio: false
+      asset_type_other: false
+schema:
+  run_every_seconds: "int(0,)"
+  verbose: "bool"
+  jobs:
+    - immich_url: "url"
+      api_key: "password"
+      album_id: "str"
+      faces:
+        - "str"
+      skip_faces:
+        - "str?"
+      require_all_faces: "bool"
+      no_other_faces: "bool"
+      remove_non_matching: "bool"
+      asset_type_image: "bool"
+      asset_type_video: "bool"
+      asset_type_audio: "bool"
+      asset_type_other: "bool"
